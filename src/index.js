@@ -17,13 +17,13 @@ searchBox.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
 function handleInput(event) {
   event.preventDefault();
-
-  if (event.target.value === '') {
+  let value = event.target.value.trim();
+  if (value === '') {
     clear();
     return;
   }
 
-  fetchCountries(event.target.value)
+  fetchCountries(value)
     .then(data => {
       items = data;
       if (items.length >= 10) {
